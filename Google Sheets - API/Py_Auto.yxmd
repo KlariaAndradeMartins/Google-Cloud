@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="126" y="42" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="3" />
+          <Fields>
+            <Field name="Empresa" />
+            <Field name="Data" />
+            <Field name="Competência" />
+            <Field name="Horas" />
+          </Fields>
+          <Data>
+            <r>
+              <c>Apple</c>
+              <c>09/2022</c>
+              <c>Java</c>
+              <c>30</c>
+            </r>
+            <r>
+              <c>Joao</c>
+              <c>09/2002</c>
+              <c>cartas</c>
+              <c>90</c>
+            </r>
+            <r>
+              <c>carlos</c>
+              <c>08/2022</c>
+              <c>jose</c>
+              <c>30</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="246" y="42" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Horas" selected="True" type="String" size="3" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="JupyterCode">
+        <Position x="366" y="42" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <WorkflowName>c:\users\klari\onedrive\área de trabalho\novo fluxo de trabalho2.yxmd</WorkflowName>
+          <JupyterProduction>false</JupyterProduction>
+          <vEnvName>designerbasetools_venv</vEnvName>
+          <DefaultVenv>1</DefaultVenv>
+          <productionModeScript />
+          <Port>61341</Port>
+          <JupyterGuidDir>9a84f24038baa070da7d66a3f9de72c7</JupyterGuidDir>
+          <JupyterGuidCopy />
+          <LastExecutedByEngineVersion>2021.3.2.54175</LastExecutedByEngineVersion>
+          <Notebook><![CDATA[{"cells":[{"cell_type":"code","execution_count":1,"metadata":{},"outputs":[],"source":["from datetime import date\n","from google.oauth2.credentials import Credentials\n","from googleapiclient.discovery import build\n","from googleapiclient.errors import HttpError\n","\n","from google.oauth2 import service_account\n","from requests import request\n","\n","from ayx import Alteryx\n","\n","\n","#gera as credenciais necessariasn\n","SCOPES = ['https://www.googleapis.com/auth/spreadsheets']\n","# SERVICE_ACCOUNT_FILE = 'Keys.json'\n","\n","TOKEN = {\n","    \"type\": \"service_account\",\n","    \"project_id\": \"lanchonete-352816\",\n","    \"private_key_id\": \"88c6bad19f6af0a1e9662c2dcf6f8292b724082c\",\n","    \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDANdRoNmXPtSce\\nsw9htB10ikX+4mbURpT7AtwrT4pfFeBW3XljaklKSaxaxGgrheVvFJQCzcuu+9ak\\nRf+sHLvE0j/m5BOS50hrHDp+BprvA1SOlQMJL9UA4tMgfxuHRGRPBkc0VUIUaoMM\\nwkuvn6qqq39KuA0qEsQNrsekwW1exbzBqHpE1/aKMFmUwN6V3jg4AOdmKNH6wfrz\\nXqdrP1h9NtnGKUxmLcta85OhSeZmyA1N3yMBP+TOIjT37nU/Md2FVTawXrN6IkYW\\n7pEZQ+FdrVt7RA5tOFDZrorTxZ5FHHSMK3bB5PqqI3u7Z6miudkAVssItU+HIYwM\\ny4H17hlBAgMBAAECggEANAM9D9hMk7jzNZkB3BAX+m3ihBcy+VWCQiyjdKrpCFMM\\nqqTzEMZ1v78Q/1zvzXtFu1nntZyH9jma+0gf6Cy8WQYGGc51R4cDr0xrvae+7FfL\\n3WuQbz981ekLdds/kUqeFE5gHVbG82xhOyYmwgckcVvILemBUnXSjNtTlg9rr728\\n0OZos6pcDpPh3xnNxWfShM+Bju+ENoq0XwT3R0j5PLRl51aksCesIsSmrJcnlnbE\\n1DC31nEGVKtMvNq9fdrrCyaRKMyBo759Qw6HRoO1YBQgP8ZK6cN0dC1XvTHMGw+e\\n/7v2Vu4BpogaecTCwiRnsTUE3zdLEHFk2rt8duwR2wKBgQD3eUakrrYMrxThSNlx\\njM4g/Wga7eEJeWisJJxXiUqEZFwEpVF4oFIARwJ/xjNV6WAkl7ajjymDDhiAOQCZ\\nsV4dE1oSlkuvuTvM2Q0cbPyyswrBnL/ylBTM/tpkacBFInhx+4MMYpHFM56W8ibd\\nOI4Z/Z57Pv0FtbsQiUDdcDhJbwKBgQDG1SD2Gbycl7tvA9OqgvsPUQdaJPWuZCmF\\nhVRvRoPfiqUjs9tp+wv+xzjV4dxWc6DO4WXiA4JPOEffUBT+V2ENM/6zuBCC1GSh\\nIe/xn3eT44nY5tSAqZOsR0wbduzl321oghQ1eBkTzpAF6M/oeIgPrgakj+l2/x30\\nvtudHk+QTwKBgEhP6bKJUqzWJBXIQbGKYVkGcvsbc1xfW5ShhgWWGm4hHTpGTE4h\\nGpT2KubHNYzvCqbmpfmZBZpD7ijZfzFpwIRieTlhLXCFgdHTwp8Bwb09z/DPKs9p\\nMcLM3Wfl9sa80dEMmzhtPQcQlFCrJWwS8ILrtvlwaGLYvXaRhKCv/+KFAoGBAKEf\\nzRohOQrcmnMX8srWYYTD8OVH1h9/43Xj2cxipDLeM3x/H2r+mXXZE2GfKeKUyNdd\\nKCbDGTIBNZztVFXXkToVzGzu19JtMy6wRbTTuR8K4IX4aHPq91RAYphPAyI0sIBk\\nCORbclbuqR9gzjpgkkHCkHeCd3qKuke+8lCcY3VZAoGBALsWXOcZUZOmqTgX2Hy0\\nRllDv/mpvfQvx2JsEw9VeA4fvFiRKDzdEKX/SvL5RzFTLquTPJ+imsGIdPjeYAcX\\nXfjSz/fiCtioqlvhM38Bn4wtJ7rr2X8UmbxYKEL9f3oGlKyJQWfHUGaWs4vw24aT\\nxC6yFtsA6A21+LPBMmh6az6w\\n-----END PRIVATE KEY-----\\n\",\n","    \"client_email\": \"lanchoneteteste@lanchonete-352816.iam.gserviceaccount.com\",\n","    \"client_id\": \"115233952638247783368\",\n","    \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n","    \"token_uri\": \"https://oauth2.googleapis.com/token\",\n","    \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n","    \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/lanchoneteteste%40lanchonete-352816.iam.gserviceaccount.com\"\n","  }\n","\n","\n","credentials = None\n","credentials = service_account.Credentials.from_service_account_info(\n","        TOKEN,\n","        scopes=SCOPES)\n","\n","# The ID spreadsheet.\n","SAMPLE_SPREADSHEET_ID = '1ldIrs5Ooc2bFnE9QGZeBDpLpnYtEK72R2Akcs22BXfk'\n","\n","def get_input() -> list:\n","    input = []\n","    alteryxData = Alteryx.read('#1')\n","    for _, row in alteryxData.iterrows():\n","        input.append([\n","            row['Empresa'],\n","            row['Data'],\n","            row['Competência'],\n","            row['Horas']])\n","    return input\n","\n","\n","\"\"\" Teste Local \"\"\"\n","# def get_input() -> list:\n","#     input = []\n","#     input.append([\n","#         'teste',\n","#         'KyrosTeste',\n","#         '23/06/2022',\n","#         '150'])\n","#     return input\n","\n","\n","def process(data: list): \n","    service = build('sheets', 'v4', credentials=credentials)\n","\n","    # Call the Sheets API\n","    #Reading the sheet\n","    sheet = service.spreadsheets()\n","\n","    result = sheet.values().get(\n","        spreadsheetId=SAMPLE_SPREADSHEET_ID,\n","        range=\"Página1!A1:C15\"\n","        ).execute() #Linhas do google sheet\n","\n","    values = result.get('values', [])\n","    sheet_range = len(values)\n","\n","    #Competencia,empresa, hora e data\n","    Dados = data\n","\n","    #Rigthing on the sheet\n","    request = sheet.values().update(\n","        spreadsheetId=SAMPLE_SPREADSHEET_ID,\n","        range=\"Página1!A\"+str(sheet_range+1),\n","        valueInputOption=\"USER_ENTERED\",\n","        body={\"values\":Dados}\n","        ).execute()\n","\n","    print(request)\n","\n","\n","if __name__=='__main__':\n","    input = get_input()\n","    process(input)"]}],"metadata":{"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.8.5"}},"nbformat":4,"nbformat_minor":1}]]></Notebook>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Novo fluxo de trabalho2</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="dcb39e6d-4691-4821-b5e8-fd63559594df" />
+      <Telemetry>
+        <PreviousWorkflowId value="2c0189e6-912a-4a34-b514-7bbc929a09e7" />
+        <OriginWorkflowId value="2c0189e6-912a-4a34-b514-7bbc929a09e7" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
